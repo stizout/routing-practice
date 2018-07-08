@@ -1,0 +1,8 @@
+nav {
+  background-color: red;
+  padding: 20px;
+}
+
+.dog > img {
+  max-width: 100px;
+}
