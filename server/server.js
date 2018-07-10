@@ -46,12 +46,15 @@ app.delete('/dogs/:id', (req, res) => {
 
 app.put('/dogs/:id', (req,res) => {
     const { name, price, image } = req.body
-    console.log('id', req.params.id)
-    console.log('edited dog',name, price, image);
-    req.app.get('db').edit_dog(req.params.id, {
-        name: name,
-        price: price,
-        image: image,
+    // console.log('id', req.params.id)
+    console.log('edited dog',typeof(name), typeof(+price), typeof(image));
+    req.app.get('db').edit_dog([
+        name,
+        +price,
+        image,
+        req.params.id
+    ]).catch(err => {
+        console.log(err)
     })
 })
 

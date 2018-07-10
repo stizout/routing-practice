@@ -1,2 +1,2 @@
-update dogs set name = ${name}, price = ${price}, image ${image} where id = $1
+update dogs set name = $1, price = $2, image $3 where id = $4
 returning *;
