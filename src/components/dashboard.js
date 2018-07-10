@@ -28,36 +28,25 @@ class Dashboard extends Component {
             console.log(err)
         });
     }
-
-    showEdit() {
-        this.setState({edit: !this.state.edit})
-    }
-
     render() {
-        console.log(this.state.dogs)
+        const dogs = this.state.dogs.map((dog, i) => {
+            return (
+                <div key={dog.id}>
+                    <div  className="dog">
+                        <h1>{dog.name}</h1>
+                        <h3>{dog.price}</h3>
+                        <img src={dog.image} alt="this is a dog"/>
+                        <button onClick={() => this.deleteDog(dog.id)}>Delete</button>
+                        <EditDog id={dog.id}/>
+                    </div>
+                </div>
+                )
+        })
         return (
             <div>
-                {this.state.dogs.map((dog, i) => {
-                    return (
-                        <div key={dog.id}>
-                            {this.state.dogs.length > 0 ?
-                            <div  className="dog">
-                                <h1>Dog</h1>
-                                <h1>{dog.name}</h1>
-                                <h3>{dog.price}</h3>
-                                <img src={dog.image} alt="this is a dog"/>
-                                <button onClick={() => this.showEdit()}>Edit</button>
-                                <button onClick={() => this.deleteDog(dog.id)}>Delete</button>
-                            </div>
-                            : null }
-                        </div>
-                    )
-                })}
-                {this.state.edit ?
-                <EditDog id={this.state.dogs.id} />
-                : null
-                }
+                {dogs}
             </div>
+
         )
     }
 }

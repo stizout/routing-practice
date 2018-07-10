@@ -10,6 +10,7 @@ class EditDog extends Component {
             name: '',
             price: '',
             image: '',
+            edit: false,
         }
     }
 
@@ -28,15 +29,25 @@ class EditDog extends Component {
         })
     }
 
+    showEdit() {
+        this.setState({edit: !this.state.edit})
+    }
+
 
     render() {
         return (
             <div>
+                <button onClick={() => this.showEdit()}>Edit</button>
+                {this.state.edit ?
+                <div>
                 <h1>Edit Dog</h1>
-                <input placeholder="Name" onChange={(e) => this.handleUserInput('name', e.target.value)}/>
-                <input placeholder="Price" onChange={(e) => this.handleUserInput('price', e.target.value)}/>
-                <input placeholder="image" onChange={(e) => this.handleUserInput('image', e.target.value)}/>
-                <button onClick={() => this.handleUpdate(this.props.id)}>Submit</button>
+                    <input placeholder="Name" onChange={(e) => this.handleUserInput('name', e.target.value)}/>
+                    <input placeholder="Price" onChange={(e) => this.handleUserInput('price', e.target.value)}/>
+                    <input placeholder="image" onChange={(e) => this.handleUserInput('image', e.target.value)}/>
+                    <button onClick={() => this.handleUpdate(this.props.id)}>Submit</button>
+                </div>
+
+                : null }
             </div>
         )
     }
